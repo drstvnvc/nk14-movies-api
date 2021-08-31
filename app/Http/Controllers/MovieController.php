@@ -9,9 +9,13 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $movies = Movie::all();
+        $title = $request->query('title');
+        $movies = Movie::search_by_title($title)->get();
+
+
+
         return response()->json($movies);
     }
 

@@ -2,19 +2,18 @@
 
 namespace Database\Seeders;
 
+use App\Models\Movie;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class MovieSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call([
-            MovieSeeder::class,
-        ]);
+        Movie::factory()->count(10)->create();
     }
 }

@@ -19,7 +19,7 @@ class Movie extends Model
     ];
 
 
-    public static function search_by_title($title = null)
+    public static function search_by_title($title = null, $take = null, $skip = null)
     {
         $query = self::query();
 
@@ -29,6 +29,11 @@ class Movie extends Model
             $query->whereRaw('lower(title) like "%' . $title . '%"');
         }
 
-        return $query;
+        if ($take != null && $skip != null) {
+            $query->take($take)
+                ->skip($skip);
+        }
+
+        return $query->get();
     }
 }

@@ -27,7 +27,7 @@ class UpdateMovieRequest extends FormRequest
             'title' => 'string|max:255',
             'director' => 'string|max:255',
             'image_url' => 'url',
-            'duration' => 'integer|min:0',
+            'duration' => 'integer|min:1|max:500',
             'release_date' => 'date',
             'genre' => 'string'
         ];

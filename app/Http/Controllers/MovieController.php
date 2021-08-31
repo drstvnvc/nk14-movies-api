@@ -30,6 +30,19 @@ class MovieController extends Controller
     public function update(Movie $movie, UpdateMovieRequest $request)
     {
         $data = $request->validated();
+
+        if (
+            $request->get('title') &&
+            $request->get('release_date') &&
+            Movie::where('title', $request->get('title'))
+            ->where('release_date', $request->get('release_date'))
+            ->where('id', '!=', $movie->id)
+            ->exists()
+        ) {
+            return response()->json([
+                'message' => "Movie with the same title and release_date already exists"
+            ], 400);
+        }
         $movie->update($data);
 
         return response()->json($movie);

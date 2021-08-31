@@ -27,7 +27,7 @@ class CreateMovieRequest extends FormRequest
             'title' => 'required|string|max:255',
             'director' => 'required|string|max:255',
             'image_url' => 'required|url',
-            'duration' => 'required|integer|min:0',
+            'duration' => 'required|integer|min:1|max:500',
             'release_date' => 'required|date',
             'genre' => 'required|string',
         ];
